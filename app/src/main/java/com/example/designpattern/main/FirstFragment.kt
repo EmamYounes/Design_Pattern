@@ -11,6 +11,12 @@ import com.example.designpattern.databinding.FragmentFirstBinding
 import com.example.designpattern.factorypattern.Shape
 import com.example.designpattern.factorypattern.ShapeFactory
 import com.example.designpattern.singleton.Singleton
+import com.example.designpattern.strategypattern.CreditCardStrategy
+import com.example.designpattern.strategypattern.Item
+
+import com.example.designpattern.strategypattern.PaypalStrategy
+
+import com.example.designpattern.strategypattern.ShoppingCart
 
 
 /**
@@ -49,7 +55,30 @@ class FirstFragment : Fragment() {
         manageSingletonPattern()
 
         manageFactoryPattern()
+
+        manageStrategyPattern()
     }
+
+    private fun manageStrategyPattern() {
+        val cart = ShoppingCart()
+
+        val item1 = Item("1234", 10)
+        val item2 = Item("5678", 40)
+
+        cart.addItem(item1)
+        cart.addItem(item2)
+
+        //pay by paypal
+
+        //pay by paypal
+        cart.pay(PaypalStrategy("myemail@example.com", "mypwd"))
+
+        //pay by credit card
+
+        //pay by credit card
+        cart.pay(CreditCardStrategy("Pankaj Kumar", "1234567890123456", "786", "12/15"))
+    }
+
 
     private fun manageFactoryPattern() {
         val shapeFactory = ShapeFactory()
